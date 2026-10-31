@@ -123,5 +123,5 @@ These need researching and writing before the skills that use them.
 
 ## Open questions
 
-- ChatGPT and claude.ai connectors expect OAuth rather than a pasted API key; does Content OS need OAuth on its MCP to support them?
+- Check each target app's connector settings accepts an `Authorization: Bearer cos_…` header. Desktop apps that run local MCP servers can always use `mcp-remote` or the stdio server; some web connector dialogs only offer OAuth.
 - Which skills from the existing personal set (`shortform-script`, `youtube-intro`, `script-check`, `carousel`) move into this repo as-is?
