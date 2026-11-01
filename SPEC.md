@@ -67,6 +67,7 @@ Turns a topic and research into a strong outline before any script is written.
 ### script-writer
 Writes the script from an approved outline, in the user's style.
 - Long-form and short-form modes. Builds on the existing `shortform-script` and `youtube-intro` skills and the `script-check` agent.
+- Short-form hooks draw on the Vault's hooks (`list_vault_hooks`) as patterns.
 - Asks the user questions where the outline needs their input instead of inventing it.
 - Saves the finished script to the content idea in Content OS.
 
@@ -84,6 +85,7 @@ Plans the title and thumbnail together, since they have to work as a pair.
 ### titles
 Writes and scores titles.
 - Uses a knowledge file on what makes a good title (curiosity, clarity, specificity, length, title/thumbnail complementarity, niche patterns from vidIQ outliers).
+- Reads the Vault's proven titles (`list_vault_titles`) and hooks (`list_vault_hooks`) as patterns, plus the user's saved title inspiration.
 - YouTube titles and Instagram on-screen hooks/captions.
 
 ### thumbnails

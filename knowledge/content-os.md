@@ -163,5 +163,8 @@ The app also understands these blocks:
 
 - `get_agent_profile`: About You and style profile. Read before planning or writing anything.
 - `list_inspiration`: saved videos, posts, titles and thumbnails the user likes. Useful for ideas, titles and thumbnails.
+- `list_vault_titles`: proven YouTube titles. `X` and `Y` are placeholders. Read before writing titles and use them as patterns, never copy one word for word.
+- `list_vault_hooks`: proven short-form hooks with their source. `[topic]`-style brackets are placeholders. Read before writing short-form hooks and use them as patterns.
+- The Vault is shared by every Content OS user and read-only. The user's own taste is in `list_inspiration`; when the two disagree, follow the user's.
 - `list_youtube_videos`, `get_youtube_analytics`, `get_metrics`: performance data.
 - `list_notes` / `get_note`: the user's own notes pages. Read when relevant; write only when asked.
