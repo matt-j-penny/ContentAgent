@@ -48,6 +48,7 @@ Each folder in `skills/` is one skill. Add them to your app's skills:
 
 - **vidIQ:** add the vidIQ MCP server and sign in with your own account. Improves research and analysis.
 - **Image generation:** connect any image-generation MCP or API you already use. Needed for thumbnails and carousel images.
+- **Video breakdowns:** install `ffmpeg` and `yt-dlp` (`brew install ffmpeg yt-dlp` on a Mac) and set `DEEPGRAM_API_KEY` to your own Deepgram key. Needs an app that can run commands, such as Claude Code, Codex or Cursor.
 
 ### 5. Run setup
 

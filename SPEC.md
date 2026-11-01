@@ -17,6 +17,8 @@ Any AI app on the user's own machine that supports skills and MCP: Claude Deskto
 | Content OS MCP | Yes | API key from the Content OS API page (`cos_…`), added as a bearer token to `https://the-content-os.com/api/mcp` | Profile, style, boards, ideas, scripts, analytics, links |
 | vidIQ MCP | No | Sign in to their own vidIQ account | Competitor and niche data, keyword and outlier research, benchmarks |
 | Image generation | No | Any image-generation MCP or API key the user already has | Thumbnails, carousel slides, repurposed assets |
+| Deepgram | For `video-breakdown` | Their own API key in `DEEPGRAM_API_KEY` | Word-timed transcripts of short-form videos |
+| Apify | No | Apify MCP or API key | Downloading Reels and TikToks when yt-dlp is blocked |
 | Web search | No | Whatever the host tool provides | Research and fact checks |
 
 ## Data rules
@@ -94,6 +96,13 @@ Explains how a video is performing and why.
 - Compares a video to the user's other videos published in a similar time window: views, view velocity, CTR, impressions, retention and average view percentage, watch time, subscribers gained, and tracked-link clicks.
 - Looks for the likely cause (packaging vs. retention vs. topic vs. timing) and suggests fixes.
 - Instagram: per-post views, reach, saves, shares and comments where available.
+
+### video-breakdown
+Breaks down one short-form video (Reel, TikTok, Short or local file) beat for beat. Built and tested.
+- Deepgram nova-3 for word-timed transcript; ffmpeg for scene cuts, flash/fade transitions and frames; the agent views the frames itself. No video model.
+- Scripts do the mechanical parts (`prepare.py`: download, transcript, cuts, frames; `timeline.py`: join speech to visual beats and check coverage). The agent describes frames, groups beats, corrects the transcript from captions and writes the structure.
+- Output is a local JSON breakdown plus a short summary. Needs a terminal, ffmpeg, yt-dlp and a Deepgram key.
+- Used by `researcher` (study outliers), `repurpose` (copy a format) and `analyst` (the user's own shorts).
 
 ### repurpose
 Turns one piece of content into others.
