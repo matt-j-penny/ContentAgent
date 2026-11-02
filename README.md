@@ -2,7 +2,7 @@
 
 Content-creation skills for YouTube and Instagram creators, powered by your Content OS data: a content director, researcher, outliner, script writer, style profile, packaging (titles and thumbnails), analyst and repurposing.
 
-Still being built. See [SPEC.md](SPEC.md) for the plan.
+See [SPEC.md](SPEC.md) for how it fits together.
 
 ## Getting started
 
@@ -38,11 +38,20 @@ Claude Desktop and other apps that take a JSON `mcpServers` config:
 
 ### 3. Install the skills
 
-Each folder in `skills/` is one skill. Add them to your app's skills:
+Clone this repo to `~/.contentagent` and link the skills into your app. Installed this way, ContentAgent checks for updates once a week and pulls them itself.
 
-- **Claude Code:** clone this repo and copy the folders in `skills/` into `~/.claude/skills/`.
-- **Claude Desktop:** zip each skill folder and upload it under Settings → Capabilities → Skills.
-- **Other apps:** put the folders wherever your app loads skills from, or point it at `AGENTS.md`.
+```bash
+git clone https://github.com/matt-j-penny/ContentAgent.git ~/.contentagent
+```
+
+```bash
+sh ~/.contentagent/scripts/install.sh
+```
+
+That links every skill into `~/.claude/skills/` (Claude Code). For another app, pass its skills folder: `sh ~/.contentagent/scripts/install.sh <folder>`.
+
+- **Claude Desktop:** zip each folder in `~/.contentagent/skills/` and upload it under Settings → Capabilities → Skills (`cd ~/.contentagent/skills && for d in */; do zip -qr "${d%/}.zip" "$d"; done`). Uploaded skills can't update themselves; re-upload after `git -C ~/.contentagent pull`.
+- **Apps without skills:** point them at `~/.contentagent/AGENTS.md`.
 
 ### 4. Optional connections
 
@@ -53,3 +62,22 @@ Each folder in `skills/` is one skill. Add them to your app's skills:
 ### 5. Run setup
 
 Restart your app, then say **"run ContentAgent setup"**. It checks your connections, then asks about your business and audience and builds your style profile.
+
+## Skills
+
+| Skill | What it does |
+|---|---|
+| `setup` | Checks connections and builds your About You profile |
+| `style` | Builds your style profile from your content and a short interview |
+| `content-director` | Strategy, plan and board priorities; routes work to the other skills |
+| `researcher` | Topic ideas, outliers, competitors and facts |
+| `outliner` | Outlines a video before it's scripted |
+| `script-writer` | Writes long- and short-form scripts in your voice |
+| `packager` | Plans the title and thumbnail together |
+| `titles` | Writes and scores titles and short-form hook text |
+| `thumbnails` | Thumbnail concepts and images |
+| `analyst` | How a video did against your normal, and why |
+| `repurpose` | Long form into shorts, videos into carousels |
+| `video-breakdown` | Beat-by-beat breakdown of a short-form video |
+
+Every skill checks for a new ContentAgent version once a week before it starts.

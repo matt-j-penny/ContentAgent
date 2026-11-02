@@ -21,6 +21,12 @@ Any AI app on the user's own machine that supports skills and MCP: Claude Deskto
 | Apify | No | Apify MCP or API key | Downloading Reels and TikToks when yt-dlp is blocked |
 | Web search | No | Whatever the host tool provides | Research and fact checks |
 
+## Install and updates
+
+- Users clone the repo to `~/.contentagent` and run `scripts/install.sh`, which links each skill folder into the app's skills folder. A `git pull` updates every skill in place.
+- Every skill runs `scripts/update.sh` first (see `knowledge/before-you-start.md`). It pulls at most once a week, tracked by `.last-update-check`, relinks skills, and prints what changed.
+- Skills reach shared knowledge through symlinks in `skills/<name>/references/`, so each skill folder is complete on its own once copied with links followed (`cp -RL`, `zip`).
+
 ## Data rules
 
 - **Stored in Content OS:** About You profile, style profile, content ideas and their board position, finished scripts, packaging (titles and thumbnails).
@@ -118,12 +124,13 @@ Turns one piece of content into others.
 Shared references the skills read, written once and kept in the repo:
 
 - `knowledge/content-os.md`: how to work with Content OS ideas, statuses, fields and attached records. Written.
+- `knowledge/before-you-start.md`: the steps every skill runs first: weekly update check, Content OS connection, reading the profile.
 - `knowledge/titles.md`: what makes a good title.
 - `knowledge/thumbnails.md`: what makes a good thumbnail.
 - `knowledge/hooks.md`: hook patterns for long and short form.
-- `knowledge/formats/`: one template per repurposing format (short, carousel, …).
+- `knowledge/formats/`: one template per repurposing format (`short-from-long.md`, `carousel.md`).
 
-These need researching and writing before the skills that use them.
+First versions are written from general best practice; refine them with research on what's working now.
 
 ## Build order
 
@@ -138,5 +145,3 @@ These need researching and writing before the skills that use them.
 ## Open questions
 
 - Check each target app's connector settings accepts an `Authorization: Bearer cos_…` header. Desktop apps that run local MCP servers can always use `mcp-remote` or the stdio server; some web connector dialogs only offer OAuth.
-- Skills are installed one folder at a time, so they can't see `knowledge/` in the repo. Either the install step copies `knowledge/` alongside them, or a build step copies the knowledge files each skill needs into its folder (`skills/<name>/references/`).
-- Which skills from the existing personal set (`shortform-script`, `youtube-intro`, `script-check`, `carousel`) move into this repo as-is?

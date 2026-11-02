@@ -9,6 +9,8 @@ Produces a time-accurate breakdown of one short-form video: a JSON file detailed
 
 How it works: the video is never sent to a video model. Deepgram transcribes the audio with exact word timings, ffmpeg finds the cuts and flash transitions and pulls frames, and you look at the frames yourself and describe them. Then the two are joined on one timeline. This gets word and cut timings right to the frame and only quotes on-screen text that's really there.
 
+Follow [`references/before-you-start.md`](references/before-you-start.md) step 1 first (the update check). Content OS is only needed to save results.
+
 ## Needs
 
 - A terminal (Claude Code, Codex, Cursor, or any host that can run commands).
@@ -147,7 +149,7 @@ Over 3 minutes, the script samples every 2 seconds instead of every second (it s
 
 ## Content OS
 
-Read [`knowledge/content-os.md`](../../knowledge/content-os.md) before writing anything. The breakdown itself stays local. When the user asks:
+Read [`references/content-os.md`](references/content-os.md) before writing anything. The breakdown itself stays local. When the user asks:
 - **Save it as inspiration:** `save_inspiration` with `kind` `instagram_post` or `youtube_video`, the URL, and a short `note` of what's worth copying. Content OS has no TikTok kind, so for TikToks put the link and note in the idea instead.
 - **Turn it into an idea:** `create_content_idea` on the short-form board (`content_type` `Short Form`), with `inspiration_url` set to the video and a `premise` built from what made it work. Leave the user's own angle for them to add.
 - **It's the user's own video:** hand the breakdown to `analyst` to compare with their other videos.
