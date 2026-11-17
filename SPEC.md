@@ -70,6 +70,9 @@ Turns a topic and research into a strong outline before any script is written.
 - Asks the user for their own stories, examples and opinions to include.
 - Can map the outline to Content OS storyboard sections and video segments.
 
+### carousel-generator
+Create reusable carousel templates, render slides and captions, and optionally make video slides from supplied clips. Supports connected and standalone workflows; rendering requires Node.js and Playwright, and video requires ffmpeg.
+
 ### script-writer
 Writes the script from an approved outline, in the user's style.
 - Long-form and short-form modes. Builds on the existing `shortform-script` and `youtube-intro` skills and the `script-check` agent.

@@ -1,6 +1,6 @@
 ---
 name: outliner
-description: Turns a content idea and its research into a strong video outline before any script is written. Long form gets hook, promise, sections with beats, payoff and CTA; short form gets hook, open loop, value beats and payoff. Interviews the user for their own stories, examples and opinions, and can map the outline to Content OS storyboard sections. Use when the user asks to outline, structure or plan a video, or when an idea is researched and ready for scripting.
+description: Turns a content idea and its research into a strong video outline before any script is written. Long form gets hook, promise, sections with beats, payoff and CTA; short form gets hook, open loop, value beats and payoff. Interviews the user for their own stories, examples and opinions, and can map the outline to Content OS storyboard sections. Use when the user asks to outline, structure, plan, workshop or talk through a video idea, or when an idea is researched and ready for scripting.
 ---
 
 # Outliner
@@ -18,7 +18,7 @@ Find the idea (`list_content_ideas`; ask which if unclear) and read its premise,
 
 If the premise is vague or there's no research on a topic that needs facts, say so and offer `researcher` first. A short opinion or story video may not need research.
 
-Move it to `Scripting` (`move_content_idea`, `expected_status` = its current status) if it's in `Idea` or `Researching`.
+For a normal outlining job, move it to `Scripting` (`move_content_idea`, `expected_status` = its current status) if it is in `Idea` or `Researching`. For a planning interview, leave its status unchanged unless the user asks to move it.
 
 ## Step 2: Lock the core
 
@@ -37,6 +37,18 @@ Ask for what only the user has. One or two questions at a time:
 - Anything they must include or must avoid.
 
 Use their answers in the outline. Where something is still missing, put a clear placeholder (`[your result with X]`), never an invented story or number.
+
+## Optional: video planning interview
+
+When the user wants to workshop a rough idea, plan filming, or talk through a video, run this conversational interview before finalising the outline. Ask one or two questions at a time; use answers already provided, summarise briefly, and never dump the whole checklist. Do not invent personal proof, results or an offer.
+
+1. Ask for the **big promise** and how the video delivers it. Turn their answer about how into a provisional chapter map.
+2. Work through each chapter one at a time: what to focus on, show and say; whether it is a screen share, talking head, or another recording style; and what proof or demo is available.
+3. Check audience payoff, key questions and the earliest useful result; select a suitable format, order sections so each leads naturally to the next, and find the creator's distinct perspective or experience.
+4. Discuss an offer connection or useful resource only when relevant to their actual offer; don't invent links, products or results.
+5. Produce a pre-shoot checklist of demos, footage, examples, assets and resources the discussion actually requires. Show the completed plan and incorporate corrections.
+
+**Save the plan:** In Content OS mode, identify the intended idea and read its existing `premise` first. Append a clearly labelled planning section in the supported HTML format, including the promise, chapter breakdown (focus/show/say/recording style), audience payoff, visuals, personal angle, relevant offer connection and checklist; preserve all existing material. Append checklist items to the existing `todo` if the user wants them there, without overwriting. If no idea exists, offer to create one and use its actual returned ID. In standalone mode, save the approved plan to the relevant local idea folder as `planning.md` and append tasks to the idea without overwriting existing work; with no file access return it in the conversation. Do not move the status merely because the interview occurred.
 
 ## Step 4: Outline
 
