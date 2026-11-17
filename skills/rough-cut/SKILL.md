@@ -74,7 +74,8 @@ Snap the cut to the start of that local silence, not the raw transcript timestam
 
 Combine every refined range from step 4 into a single sorted list of cuts, invert it into keep-ranges, and cut once — don't cut silence in one pass and bad takes in another.
 
-- **Video editor connected:** import the source and place cuts on the timeline at the keep-list boundaries.
+- **CapCut:** if `capcut-editor` is installed and the user wants a new editable draft, use its validated keep-list workflow. It supports one source video and requires CapCut to be closed for draft creation.
+- **Another connected editor:** use its supported tools to place cuts at the keep-list boundaries.
 - **ffmpeg only:** cut the keep segments in a single pass with `select`/`aselect` (avoids re-encoding N separate files and concatenating):
 
 ```bash

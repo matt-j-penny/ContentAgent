@@ -6,10 +6,17 @@ dest="${1:-$HOME/.claude/skills}"
 mkdir -p "$dest"
 for dir in "$repo"/skills/*/; do
   name="$(basename "$dir")"
-  if [ -e "$dest/$name" ] && [ ! -L "$dest/$name" ]; then
-    echo "Skipped $name: $dest/$name is a copy, not a link. Delete it and rerun to keep it up to date."
+  target="$dest/$name"
+  desired="${dir%/}"
+  if [ -L "$target" ]; then
+    if [ "$(readlink "$target")" != "$desired" ]; then
+      echo "Skipped $name: an existing skill link points elsewhere."
+      continue
+    fi
+  elif [ -e "$target" ]; then
+    echo "Skipped $name: an existing skill is already installed."
     continue
   fi
-  ln -sfn "${dir%/}" "$dest/$name"
+  ln -sfn "$desired" "$target"
 done
 echo "ContentAgent skills linked into $dest"

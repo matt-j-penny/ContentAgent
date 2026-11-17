@@ -38,6 +38,8 @@ How much a video beat its channel's normal: views ÷ the channel's median views 
 
 Return 5-15 ideas as a table: working name, format (long or short), the evidence (link, views, outlier factor), the angle for this user, and how it ties to their offer. Mark which ones you'd make first.
 
+For a deep YouTube topic study with transcript breakdowns and audience comments, use `yt-video-research` when installed.
+
 ## Job 2: Research one idea
 
 Given an idea (find it with `list_content_ideas`), or a topic:
@@ -56,6 +58,8 @@ Then update the idea:
 - Only when the user asks: research notes to `ai_research` (HTML), and sources to `body_text`.
 
 Suggest `outliner` as the next step.
+
+For Instagram competitor research and local post-data ranking, use `instagram-research` when installed.
 
 ## Job 3: Competitor study
 

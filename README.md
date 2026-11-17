@@ -75,6 +75,8 @@ Restart your app, then say **"run ContentAgent setup"**. It checks your connecti
 | `style` | Builds your style profile from your content and a short interview |
 | `content-director` | Strategy, plan and board priorities; routes work to the other skills |
 | `researcher` | Topic ideas, outliers, competitors and facts |
+| `yt-video-research` | Research a video topic using competitors, transcripts and comments |
+| `instagram-research` | Research and rank public Instagram competitor posts |
 | `outliner` | Workshops a video idea and outlines it before scripting |
 | `script-writer` | Writes long- and short-form scripts in your voice |
 | `packager` | Plans the title and thumbnail together |
@@ -88,6 +90,16 @@ Restart your app, then say **"run ContentAgent setup"**. It checks your connecti
 | `youtube-editing-style` | Analyse the editing style of a long-form or short video |
 | `transcribe` | Produce word-timed transcripts for editing |
 | `rough-cut` | Plan and make a transcript-based rough cut |
+| `capcut-editor` | Create a new editable CapCut rough-cut draft on macOS |
+| `audio-design` | Mix supplied music and timed sound effects under video |
+| `b-roll` | Plan and insert supplied video cutaways over existing footage |
+| `short-clip` | Reframe a selected interval as a vertical clip |
+| `programmatic-short` | Assemble a vertical image-and-narration video |
+| `3d-video` | Render an editable 3D object turntable in Blender |
+| `motion-reference` | Analyse and recreate motion graphics with available tools |
+| `screen-recording` | Plan, capture or edit a screen-share with available tools |
+| `ai-media` | Generate visual assets with an available image or video provider |
+| `editor-connection` | Discover and use available video-editor connections |
 
 Every skill checks for a new ContentAgent version once a week before it starts.
 
@@ -96,3 +108,7 @@ Standalone mode includes a snapshot of the shared title and short-form hook Vaul
 Carousel rendering needs Node.js, Playwright and its Chromium browser; video slides also need ffmpeg. Image generation is optional. See the carousel-generator skill for installation and usage.
 
 Video-manifest and editing workflows use local files. Video analysis and rough cutting need ffmpeg; video transcription uses Deepgram by default. The manifest can be used without a video or API key through an interview. See each skill for supported inputs and dependencies.
+
+The CapCut integration creates new single-source drafts only. It requires macOS and CapCut; close CapCut before draft creation. Its draft format has not yet been verified against every CapCut version.
+
+Video creation dependencies vary by skill. Local clips, B-roll, audio mixes and image-based shorts need ffmpeg; 3D turntables need Blender. Motion-reference capture needs Pillow and ffmpeg. Screen recording, AI generation and third-party editors require compatible tools to be available in the host. The CapCut bridge currently creates new drafts only and has not been live-tested against every version.

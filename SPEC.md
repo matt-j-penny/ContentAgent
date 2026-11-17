@@ -156,3 +156,15 @@ Follow `knowledge/standalone.md` after the user declines the Content OS connecti
 ## Video editing foundation
 
 `video-manifest` creates a local editing rulebook from project data, video analysis and interviews. It resolves base and format-specific profiles for `rough-cut`, which uses word-timed transcription and an available editor or ffmpeg. `transcribe` defaults to Deepgram. Editor-specific integrations and broader production workflows require separate implementations and verification.
+
+`capcut-editor` validates an ordered keep-list and assembles a new local CapCut draft on macOS, without editing existing drafts. It uses the rough-cut skill and can follow a video-manifest profile. Live-editor compatibility requires verification on the installed CapCut version.
+
+`audio-design` mixes user-supplied music and timed sound effects into a new local video with dialogue-driven ducking. It preserves the source and does not bundle unverified music or sound-effect licences.
+
+`b-roll` plans and renders full-frame cutaways from user-supplied video clips while preserving original audio. It does not claim a stock-footage library, AI generation or an editable editor timeline.
+
+Additional production skills render source-preserving B-roll and short clips, mix supplied music and sound effects, assemble image-based shorts, and render Blender object turntables. Motion-reference captures frames for analysis; full recreation needs an available motion-design tool. Screen-recording, AI-media and editor-connection discover compatible host tools; their presence alone does not establish a working provider or editor integration.
+
+`yt-video-research` extends topic research with video and transcript breakdowns and public-comment analysis, using vidIQ when available and other sources otherwise. Save research to the idea only when the user requests it, preserving existing research.
+
+`instagram-research` studies public competitor posts and can rank user-supplied post data by creator/format median with sample-size safeguards. Data collection requires an available source; the skill never changes a feed automatically.
