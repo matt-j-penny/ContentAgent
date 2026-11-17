@@ -1,0 +1,348 @@
+{
+  "meta": {
+    "name": "Example Creator",
+    "version": 1,
+    "updated": "2026-11-13",
+    "sources": [
+      { "id": "nle-1", "type": "nle", "tool": "capcut", "path": "~/Movies/CapCut/.../My Video", "notes": "Long-form tutorial edit" },
+      { "id": "vid-1", "type": "own-video", "path": "https://youtube.com/watch?v=...", "notes": "Short, 9:16" },
+      { "id": "ref-1", "type": "reference", "path": "https://youtube.com/watch?v=...", "adopted": ["layouts.pip", "pacing"], "notes": "Liked their PIP and pace" },
+      { "id": "web-1", "type": "website", "path": "https://example.com" },
+      { "id": "int-1", "type": "interview", "notes": "Answers given while building the manifest" }
+    ]
+  },
+
+  "base": {
+    "identity": {
+      "summary": "Fast, clean, educational. Hard cuts, lots of screen demos, one accent colour, nothing gimmicky.",
+      "formats": ["talking head", "tutorial", "podcast clip"],
+      "references": [
+        { "name": "Creator X", "url": "https://...", "take": "PIP style, pacing", "ignore": "their captions" }
+      ],
+      "rules": [
+        "Never leave the same shot static for more than 4 seconds",
+        "Never cover the speaker's face with a graphic",
+        "Hard cut is the default transition",
+        "Only one accent colour on screen at a time"
+      ]
+    },
+
+    "brand": {
+      "colors": {
+        "primary": "#7C3AED",
+        "secondary": "#0F172A",
+        "accent": "#F59E0B",
+        "background": "#0B0B10",
+        "text": "#FFFFFF",
+        "muted": "#94A3B8"
+      },
+      "colorUsage": {
+        "highlight": "accent",
+        "numbers": "primary",
+        "warnings": "#EF4444",
+        "emphasisWords": "accent"
+      },
+      "typography": {
+        "heading": { "family": "Montserrat", "weight": 800, "case": "upper", "tracking": "-0.02em" },
+        "body": { "family": "Inter", "weight": 500, "case": "sentence" },
+        "caption": { "family": "Montserrat", "weight": 800, "case": "upper" },
+        "numeric": { "family": "JetBrains Mono", "weight": 700 }
+      },
+      "typeRules": { "maxWordsPerLine": 4, "stroke": "none", "shadow": "0 4px 20px rgba(0,0,0,.45)" },
+      "logo": { "use": "end card only", "position": "bottom-right", "sizePct": 8 },
+      "icons": { "style": "outline", "library": "Lucide", "emoji": false },
+      "shapes": { "radius": 18, "stroke": "1px rgba(255,255,255,.12)", "glow": false, "shadow": "soft" },
+      "texture": "subtle film grain on full-screen graphics only"
+    },
+
+    "pacing": {
+      "cutsPerMin": 14,
+      "maxStaticSec": 4,
+      "silenceKeptMs": 120,
+      "breaths": "cut",
+      "fillers": { "remove": ["um", "uh", "you know"], "strictness": "remove all unless it changes meaning" },
+      "retakes": "keep the last clean take",
+      "jumpCuts": "hard jump cut, alternate punch-in to hide every second cut",
+      "punchIn": { "levels": [100, 115, 130], "every": "2-3 cuts", "on": "emphasis words" },
+      "sentencePaddingFrames": { "before": 2, "after": 4 },
+      "letItBreathe": ["after a joke lands", "big reveal", "emotional beat"]
+    },
+
+    "audio": {
+      "jCut": { "use": "into B-roll and section changes", "leadFrames": 8 },
+      "lCut": { "use": "out of demos back to A-roll", "tailFrames": 10 },
+      "crossfadeFrames": 2,
+      "roomTone": "fill gaps with room tone, never dead silence",
+      "dialogue": { "lufs": -14, "truePeak": -1 },
+      "voiceChain": ["high-pass 80Hz", "light compression 3:1", "de-ess", "noise reduction light"]
+    },
+
+    "music": {
+      "moods": { "tutorial": "lo-fi / minimal electronic", "story": "cinematic ambient" },
+      "sources": ["Epidemic Sound"],
+      "underVoiceDb": -24,
+      "ducking": true,
+      "trackChanges": "switch track at each new section",
+      "cutToBeat": "B-roll montages only",
+      "drops": "cut music to silence 1 beat before a key line"
+    },
+
+    "sfx": {
+      "density": "moderate",
+      "style": "clean UI clicks and soft whooshes, no cartoon sounds",
+      "mapping": [
+        { "trigger": "text pop-in", "sound": "soft pop", "levelDb": -18 },
+        { "trigger": "layout change", "sound": "whoosh", "levelDb": -16 },
+        { "trigger": "number/stat", "sound": "ding", "levelDb": -18 },
+        { "trigger": "punch-in zoom", "sound": "none", "levelDb": null },
+        { "trigger": "reveal", "sound": "riser 1s", "levelDb": -20 }
+      ],
+      "never": ["under emotional lines", "more than 2 in the same second"]
+    },
+
+    "transitions": {
+      "defaultCutPct": 95,
+      "approved": [
+        { "name": "whip pan", "durationFrames": 8, "use": "between sections" },
+        { "name": "zoom through", "durationFrames": 10, "use": "into a demo" }
+      ],
+      "banned": ["star wipe", "page curl", "cross dissolve on dialogue"],
+      "where": "section changes and B-roll in/out only, never mid-sentence"
+    },
+
+    "camera": {
+      "angleSwitching": "switch A/B cam every new point, B cam for asides",
+      "framing": { "headroomPct": 8, "eyeLine": "upper third", "placement": "centre" },
+      "maxDigitalZoom": 1.5,
+      "verticalReframe": "track the face, keep eyes at 35% from top",
+      "postMoves": ["slow push-in 100→105% on long holds"]
+    },
+
+    "broll": {
+      "density": "every 8-12 seconds",
+      "style": "literal first, metaphorical only for abstract ideas",
+      "sources": ["own screen recordings", "own footage", "Pexels", "AI generated"],
+      "clipLengthSec": [1.5, 3],
+      "audio": "muted, add SFX if it has an action",
+      "screenRecording": { "zoomToCursor": true, "highlight": "accent outline", "blurSensitive": true },
+      "websites": "browser frame, slight 3D tilt, slow scroll",
+      "memes": "rare, max one per video",
+      "framing": "rounded card with shadow over blurred background"
+    },
+
+    "layouts": {
+      "library": [
+        {
+          "id": "full",
+          "name": "Full-screen talking head",
+          "aspect": "16:9",
+          "use": "default A-roll",
+          "regions": [{ "role": "speaker", "x": 0, "y": 0, "w": 100, "h": 100 }]
+        },
+        {
+          "id": "pip-right-third",
+          "name": "PIP right third over screen",
+          "aspect": "16:9",
+          "use": "demos and screen recordings",
+          "regions": [
+            { "role": "content", "x": 0, "y": 0, "w": 100, "h": 100 },
+            { "role": "speaker", "x": 70, "y": 52, "w": 26, "h": 44, "shape": "rounded", "radius": 24, "border": "2px #FFFFFF22", "shadow": "soft", "cutout": false }
+          ]
+        },
+        {
+          "id": "split",
+          "name": "Split 50/50",
+          "aspect": "16:9",
+          "use": "comparisons",
+          "regions": [
+            { "role": "speaker", "x": 0, "y": 0, "w": 50, "h": 100 },
+            { "role": "content", "x": 50, "y": 0, "w": 50, "h": 100 }
+          ]
+        }
+      ],
+      "pip": { "default": "pip-right-third", "marginPct": 4, "shape": "rounded", "sizePctOfWidth": 26, "cutout": false },
+      "switching": {
+        "triggers": ["showing something on screen", "a list", "a comparison", "new section"],
+        "transition": { "type": "animated scale/slide", "durationMs": 400, "easing": "cubic-bezier(.2,.8,.2,1)" },
+        "minHoldSec": 3,
+        "maxHoldSec": 20
+      },
+      "safeZones": { "topPct": 0, "bottomPct": 0, "rightPct": 0 },
+      "grid": { "marginPct": 5, "gutterPct": 2 }
+    },
+
+    "structure": {
+      "segmentTypes": [
+        { "id": "intro", "layout": "full", "treatment": "fast cuts, title card", "brollPct": 30, "graphicsPerMin": 6 },
+        { "id": "explain", "layout": "full", "treatment": "punch-ins, keyword pops", "brollPct": 20, "graphicsPerMin": 3 },
+        { "id": "demo", "layout": "pip-right-third", "treatment": "screen recording, zoom to cursor", "brollPct": 80, "graphicsPerMin": 2 },
+        { "id": "outro", "layout": "full", "treatment": "end card", "brollPct": 0, "graphicsPerMin": 1 }
+      ],
+      "typicalSequence": ["intro", "explain", "demo", "explain", "demo", "outro"],
+      "dividers": "chapter divider template with whoosh",
+      "intro": "no branded sting, straight in",
+      "outro": "8-second end card",
+      "beatMap": [
+        { "startPct": 0, "endPct": 5, "segment": "intro" },
+        { "startPct": 5, "endPct": 25, "segment": "explain" },
+        { "startPct": 25, "endPct": 55, "segment": "demo" },
+        { "startPct": 55, "endPct": 70, "segment": "explain" },
+        { "startPct": 70, "endPct": 95, "segment": "demo" },
+        { "startPct": 95, "endPct": 100, "segment": "outro" }
+      ]
+    },
+
+    "captions": {
+      "enabled": false,
+      "style": "word-by-word with active word highlight",
+      "font": "caption",
+      "sizePctOfHeight": 6,
+      "color": "text",
+      "highlight": "accent",
+      "stroke": "none",
+      "shadow": "soft",
+      "position": { "yPct": 72, "align": "center" },
+      "maxWords": 3,
+      "maxLines": 1,
+      "emphasis": "keyword in accent colour, 110% scale",
+      "animation": "pop 120ms",
+      "behindSubject": false,
+      "onLayoutChange": "move above PIP, never over the face",
+      "numbers": "digits, not words",
+      "profanity": "censor with ****"
+    },
+
+    "motionGraphics": {
+      "style": "minimal, clean, bold type, one idea per graphic",
+      "motion": {
+        "easing": "cubic-bezier(.2,.8,.2,1)",
+        "inMs": 350,
+        "outMs": 250,
+        "overshoot": "slight (5%)",
+        "staggerMs": 60
+      },
+      "vocabulary": { "in": ["scale up from 90%", "mask reveal left to right", "slide up 40px"], "out": ["fade + scale 95%"] },
+      "depth": "flat, soft shadows only",
+      "maxOnScreen": 2,
+      "triggers": [
+        { "when": "a number or stat", "use": "stat-callout" },
+        { "when": "a name or title is introduced", "use": "lower-third" },
+        { "when": "a list is spoken", "use": "list-reveal" },
+        { "when": "a tool or product is mentioned", "use": "logo/screenshot card" },
+        { "when": "a key term", "use": "keyword pop" },
+        { "when": "a quote", "use": "quote-card" }
+      ],
+      "placement": {
+        "full": "beside the speaker on the side they are not facing, or full-screen for big moments",
+        "pip-right-third": "top-left over the content, never over the PIP",
+        "split": "inside the content half"
+      },
+      "frequency": { "perMin": 4, "maxGapSec": 15 },
+      "sync": { "landOn": "the exact spoken word", "holdAfterSec": 1.2 },
+      "speakerInteraction": "never over the face; behind the subject allowed for titles",
+      "build": { "preferred": "hyperframes", "alternatives": ["remotion", "capcut native text"] },
+      "never": ["spinning text", "more than 2 colours", "graphics during emotional lines"]
+    },
+
+    "color": {
+      "look": "clean, slightly warm, punchy contrast",
+      "luts": [],
+      "skinPriority": true,
+      "defaults": { "contrast": 10, "saturation": 5, "temperature": 3 },
+      "vignette": "none",
+      "grain": "none on footage",
+      "cameraMatch": "match B cam to A cam skin tone"
+    },
+
+    "effects": {
+      "speedRamps": "B-roll montages only",
+      "freezeFrames": "for name callouts",
+      "shake": "never",
+      "glitch": "never",
+      "blur": "background blur behind cards",
+      "lightLeaks": "never",
+      "banned": ["shake", "glitch", "light leaks", "lens flare"]
+    },
+
+    "workflow": {
+      "order": ["rough cut", "audio clean-up", "layouts", "B-roll", "motion graphics", "captions", "SFX", "music", "colour", "QA"],
+      "decideAlone": ["cut points", "punch-ins", "SFX placement", "B-roll choice from approved sources"],
+      "mustAsk": ["removing a whole section", "new template creation", "anything in identity.rules conflicts"],
+      "whenUnsure": "pick the simpler option and leave a marker on the timeline",
+      "qa": [
+        "No static shot longer than pacing.maxStaticSec",
+        "No graphic covers the face",
+        "Dialogue at audio.dialogue.lufs",
+        "Every graphic uses brand tokens",
+        "Captions inside safe zones"
+      ],
+      "mistakes": ["cutting the end of words", "SFX louder than voice", "graphics arriving late"]
+    }
+  },
+
+  "profiles": {
+    "youtube": {
+      "label": "YouTube long-form",
+      "platform": "YouTube",
+      "aspect": "16:9",
+      "description": "Tutorials and explainers, 8-20 min"
+    },
+    "shorts": {
+      "label": "Shorts / Reels / TikTok",
+      "platform": "TikTok, Reels, Shorts",
+      "aspect": "9:16",
+      "description": "30-60 second clips",
+      "pacing": { "cutsPerMin": 26, "maxStaticSec": 2, "silenceKeptMs": 60 },
+      "captions": { "enabled": true, "position": { "yPct": 62, "align": "center" } },
+      "layouts": {
+        "library": [
+          { "id": "full", "name": "Full vertical", "aspect": "9:16", "use": "default", "regions": [{ "role": "speaker", "x": 0, "y": 0, "w": 100, "h": 100 }] },
+          {
+            "id": "stacked", "name": "Content top, face bottom", "aspect": "9:16", "use": "demos",
+            "regions": [
+              { "role": "content", "x": 0, "y": 0, "w": 100, "h": 50 },
+              { "role": "speaker", "x": 0, "y": 50, "w": 100, "h": 50 }
+            ]
+          }
+        ],
+        "safeZones": { "topPct": 12, "bottomPct": 20, "rightPct": 12 }
+      },
+      "motionGraphics": { "frequency": { "perMin": 8, "maxGapSec": 6 } }
+    }
+  },
+
+  "templates": [
+    {
+      "id": "lower-third",
+      "name": "Lower third",
+      "category": "lower-thirds",
+      "path": "templates/lower-third/index.html",
+      "variables": { "title": "Name Here", "subtitle": "Role or context" },
+      "durationSec": 4,
+      "use": "introducing a person, tool or source",
+      "layouts": ["full", "split"],
+      "profiles": ["youtube", "shorts"],
+      "build": "html",
+      "origin": "starter"
+    }
+  ],
+
+  "evidence": {
+    "stats": [
+      { "source": "nle-1", "metric": "cutsPerMin", "value": 13.8 },
+      { "source": "vid-1", "metric": "medianShotSec", "value": 2.1 }
+    ],
+    "frames": [
+      { "source": "vid-1", "path": "sources/vid-1/frames/0012.jpg", "time": 12.0, "note": "PIP right third, rounded, no border" }
+    ]
+  },
+
+  "_sources": {
+    "pacing.cutsPerMin": "measured:nle-1",
+    "profiles.shorts.pacing.cutsPerMin": "measured:vid-1",
+    "layouts.library": "observed:ref-1",
+    "brand.colors": "measured:web-1",
+    "captions.enabled": "asked:int-1"
+  },
+  "_locked": ["captions.enabled"]
+}

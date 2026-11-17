@@ -152,3 +152,7 @@ First versions are written from general best practice; refine them with research
 ## Standalone mode
 
 Follow `knowledge/standalone.md` after the user declines the Content OS connection. Local profiles, ideas, outputs and user inspiration are durable; shared titles and hooks are bundled snapshots. Connected-mode data and operations remain the default. Missing live analytics must be supplied separately or marked unavailable.
+
+## Video editing foundation
+
+`video-manifest` creates a local editing rulebook from project data, video analysis and interviews. It resolves base and format-specific profiles for `rough-cut`, which uses word-timed transcription and an available editor or ffmpeg. `transcribe` defaults to Deepgram. Editor-specific integrations and broader production workflows require separate implementations and verification.

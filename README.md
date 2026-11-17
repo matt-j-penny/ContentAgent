@@ -84,9 +84,15 @@ Restart your app, then say **"run ContentAgent setup"**. It checks your connecti
 | `repurpose` | Long form into shorts, videos into carousels |
 | `carousel-generator` | Create reusable carousel designs and optional video slides |
 | `video-breakdown` | Beat-by-beat breakdown of a short-form video |
+| `video-manifest` | Capture an editing style from project files, video and interviews |
+| `youtube-editing-style` | Analyse the editing style of a long-form or short video |
+| `transcribe` | Produce word-timed transcripts for editing |
+| `rough-cut` | Plan and make a transcript-based rough cut |
 
 Every skill checks for a new ContentAgent version once a week before it starts.
 
 Standalone mode includes a snapshot of the shared title and short-form hook Vault. Thumbnail examples may be supplied by the user or researched; a shared thumbnail URL library is not included. Analytics require an available source or user-supplied data.
 
 Carousel rendering needs Node.js, Playwright and its Chromium browser; video slides also need ffmpeg. Image generation is optional. See the carousel-generator skill for installation and usage.
+
+Video-manifest and editing workflows use local files. Video analysis and rough cutting need ffmpeg; video transcription uses Deepgram by default. The manifest can be used without a video or API key through an interview. See each skill for supported inputs and dependencies.

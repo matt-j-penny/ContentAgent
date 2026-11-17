@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../_base.css"><link rel="stylesheet" href="../_brand.css"><style>
+.cap{position:absolute;left:0;right:0;top:72%;text-align:center;font-family:var(--font-caption);font-weight:800;font-size:4vw;text-transform:uppercase;text-shadow:0 .3vw 1.2vw #000c}
+.cap span{display:inline-block;margin:0 .4vw;transition:color .1s,transform .1s}
+.cap span.on{color:var(--c-accent);transform:scale(1.1)}
+</style></head><body data-loop="3"><div class="footage">FOOTAGE</div>
+<div class="cap" id="cap" data-var="text">Captions follow the voice</div>
+<script>const c=document.getElementById('cap');const words=c.textContent.trim().split(/\s+/);c.innerHTML=words.map(w=>'<span>'+w+'</span>').join(' ');document.addEventListener('play',()=>{const s=[...c.children];s.forEach((e,i)=>setTimeout(()=>{s.forEach(x=>x.classList.remove('on'));e.classList.add('on')},i*350))})</script>
+<script src="../_base.js"></script></body></html>
