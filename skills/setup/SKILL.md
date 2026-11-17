@@ -5,6 +5,9 @@ description: First-run onboarding for ContentAgent. Checks the Content OS connec
 
 # Setup
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 Gets a new user ready: connections checked, About You profile saved. Takes about ten minutes of the user's time. Ends by handing off to `style`.
 
 Follow [`references/before-you-start.md`](references/before-you-start.md) steps 1-3 first. This skill is the one that creates the About You profile, so don't stop if it's missing.
@@ -13,12 +16,12 @@ Follow [`references/before-you-start.md`](references/before-you-start.md) steps 
 
 Check each and report them as one short list (connected / not connected / how to fix):
 
-1. **Content OS MCP.** If its tools aren't available, stop here and walk the user through the README's step 2: create an API key on the **AI & Connections** page (starts with `cos_`), then add the server with the key as a bearer token. For Claude Code that's:
+1. **Content OS MCP.** If its tools are unavailable and the user chooses to connect, walk them through the README connection steps: create an API key on the **AI & Connections** page (starts with `cos_`), then add the server with the key as a bearer token. For Claude Code that's:
    ```bash
    claude mcp add --transport http content-os https://the-content-os.com/api/mcp --header "Authorization: Bearer cos_…"
    ```
    Never ask the user to paste the key into the chat; tell them to put it in the command or config themselves. They need to restart the app afterwards.
-2. **Platforms in Content OS.** `get_connections`. YouTube and Instagram are optional but the analyst and director work much better with them. If one's missing, tell them it's connected in Content OS under **AI & Connections** (YouTube needs a Data API key and handle; YouTube Analytics needs a one-time Google sign-in; Instagram goes through Zernio). Don't connect them yourself unless the user gives you the key in a command they run.
+2. **Platforms in Content OS (connected mode only).** `get_connections`. YouTube and Instagram are optional but the analyst and director work much better with them. If one's missing, tell them it's connected in Content OS under **AI & Connections** (YouTube needs a Data API key and handle; YouTube Analytics needs a one-time Google sign-in; Instagram goes through Zernio). Don't connect them yourself unless the user gives you the key in a command they run.
 3. **vidIQ** (optional): is a vidIQ MCP available? If not, say it improves research and analysis, and that they add the vidIQ MCP server and sign in with their own account.
 4. **Image generation** (optional): is any image-generation tool available? If not, say thumbnails and carousels will be briefs only until they connect one.
 5. **Video breakdowns** (optional, needs a terminal): `ffmpeg`, `yt-dlp`, `python3` installed, `DEEPGRAM_API_KEY` set. Check with `command -v` and `[ -n "$DEEPGRAM_API_KEY" ]`; never print the key.
@@ -28,7 +31,7 @@ Missing optional connections don't block setup. Carry on.
 
 ## Step 2: About You interview
 
-Call `get_agent_profile`. If an About You profile exists, show a short summary and ask what's changed instead of starting over.
+In Content OS mode call `get_agent_profile`; in standalone mode read `contentagent/profile/about.md` if present. If an About You profile exists, show a short summary and ask what's changed instead of starting over.
 
 Otherwise interview the user. Ask one or two questions at a time, in plain language, and follow up on vague answers ("everyone" is not an audience). Before asking, look for answers yourself: their YouTube channel and recent videos (`list_youtube_videos`), `get_metrics`, their website if they mention one. Then confirm what you found rather than asking from scratch.
 
@@ -75,7 +78,7 @@ Write the profile as markdown, using the user's own words where they're good:
 - …
 ```
 
-Show it to the user, apply their corrections, then `update_agent_profile {about}`. Only pass `about`; leaving `style` out keeps the stored style profile.
+Show it to the user, apply their corrections, then save with `update_agent_profile {about}` in Content OS mode, or write `contentagent/profile/about.md` in standalone mode. Only pass `about`; leaving `style` out keeps the stored style profile.
 
 ## Step 4: Hand off
 

@@ -5,11 +5,14 @@ description: Break down a short-form video (Instagram Reel, TikTok, YouTube Shor
 
 # Video breakdown
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 Produces a time-accurate breakdown of one short-form video: a JSON file detailed enough that someone could rebuild the video beat for beat, plus a short summary for the user.
 
 How it works: the video is never sent to a video model. Deepgram transcribes the audio with exact word timings, ffmpeg finds the cuts and flash transitions and pulls frames, and you look at the frames yourself and describe them. Then the two are joined on one timeline. This gets word and cut timings right to the frame and only quotes on-screen text that's really there.
 
-Follow [`references/before-you-start.md`](references/before-you-start.md) step 1 first (the update check). Content OS is only needed to save results.
+Follow [`references/before-you-start.md`](references/before-you-start.md) to choose the data source. Content OS is only needed when saving there; use local files in standalone mode.
 
 ## Needs
 

@@ -1,6 +1,6 @@
 # ContentAgent spec
 
-A public, installable set of content-creation skills for YouTube and Instagram creators. Each user connects their own Content OS account; vidIQ is optional but improves research and analysis.
+A public, installable set of content-creation skills for YouTube and Instagram creators. Content OS is the default; users who decline to connect can work from local files. vidIQ is optional but improves research and analysis.
 
 ## Where it runs
 
@@ -8,13 +8,13 @@ Any AI app on the user's own machine that supports skills and MCP: Claude Deskto
 
 - Skills use the open Agent Skills format (a folder per skill with a `SKILL.md`), so one copy works across tools.
 - An `AGENTS.md` at the root points tools without skill support at the same instructions.
-- Each skill must work with only the Content OS MCP connected. vidIQ and image generation are used when present and skipped when not.
+- Each skill must work with only the Content OS MCP connected or in standalone mode after the user declines connection. vidIQ and image generation are used when present and skipped when not.
 
 ## Connections
 
 | Connection | Required | How the user connects | Used for |
 |---|---|---|---|
-| Content OS MCP | Yes | API key from the Content OS API page (`cos_…`), added as a bearer token to `https://the-content-os.com/api/mcp` | Profile, style, boards, ideas, scripts, analytics, links |
+| Content OS MCP | Default; optional if declined | API key from the Content OS API page (`cos_…`), added as a bearer token to `https://the-content-os.com/api/mcp` | Profile, style, boards, ideas, scripts, analytics, links |
 | vidIQ MCP | No | Sign in to their own vidIQ account | Competitor and niche data, keyword and outlier research, benchmarks |
 | Image generation | No | Any image-generation MCP or API key the user already has | Thumbnails, carousel slides, repurposed assets |
 | Deepgram | For `video-breakdown` | Their own API key in `DEEPGRAM_API_KEY` | Word-timed transcripts of short-form videos |
@@ -37,9 +37,9 @@ Any AI app on the user's own machine that supports skills and MCP: Claude Deskto
 
 Every skill that reads or writes Content OS follows [`knowledge/content-os.md`](knowledge/content-os.md): the boards, what each status means and who moves ideas between them, what each idea field is for and which skill writes it, and the HTML formats the app understands.
 
-Every skill starts by reading two records from Content OS:
+In connected mode, skills load two records from Content OS; in standalone mode they use local equivalents:
 
-1. **About You:** business, offer, audience, niche, competitors, platforms. If it's missing, run `setup` first.
+1. **About You:** business, offer, audience, niche, competitors, platforms. If it's missing, offer `setup` or use available context.
 2. **Style profile:** voice, tone, vocabulary, sentence rhythm, hooks they use, phrases to avoid, formatting habits. If it's missing, writing skills offer to run `style` first, or continue with a neutral voice.
 
 ## Skills
@@ -145,3 +145,7 @@ First versions are written from general best practice; refine them with research
 ## Open questions
 
 - Check each target app's connector settings accepts an `Authorization: Bearer cos_…` header. Desktop apps that run local MCP servers can always use `mcp-remote` or the stdio server; some web connector dialogs only offer OAuth.
+
+## Standalone mode
+
+Follow `knowledge/standalone.md` after the user declines the Content OS connection. Local profiles, ideas, outputs and user inspiration are durable; shared titles and hooks are bundled snapshots. Connected-mode data and operations remain the default. Missing live analytics must be supplied separately or marked unavailable.

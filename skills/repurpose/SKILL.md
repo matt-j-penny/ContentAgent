@@ -5,6 +5,9 @@ description: Turns one piece of content into others. Long-form YouTube videos be
 
 # Repurpose
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 Gets more out of content the user already made. Each new piece must stand on its own; nobody should need the original to understand it.
 
 Follow [`references/before-you-start.md`](references/before-you-start.md) first. Format templates:

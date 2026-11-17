@@ -5,6 +5,9 @@ description: Researches content topics, competitors and niche trends for YouTube
 
 # Researcher
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 Finds evidence: what's working in the niche, what the audience is asking, and the facts a video needs. Output is working data and stays local unless the user asks to save it.
 
 Follow [`references/before-you-start.md`](references/before-you-start.md) first. Read `list_idea_tips` (the `proof` and `premise` sections) for how this user judges evidence.

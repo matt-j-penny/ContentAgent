@@ -5,6 +5,9 @@ description: Builds and runs the user's content strategy and plan for YouTube an
 
 # Content director
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 Decides what to make, in what order, and why, then keeps the Content OS boards matching that plan. It doesn't set goals or targets; it works from the user's business and audience.
 
 Follow [`references/before-you-start.md`](references/before-you-start.md) first. Needs an About You profile; if it's missing, run `setup`.

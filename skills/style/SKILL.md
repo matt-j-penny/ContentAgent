@@ -5,6 +5,9 @@ description: Builds and maintains the user's style profile (voice, tone, vocabul
 
 # Style
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 The style profile is what makes every script, title and caption sound like the user and not like an AI. It's built from evidence (what they actually say) and confirmed by them.
 
 Follow [`references/before-you-start.md`](references/before-you-start.md) first. Style can run without an About You profile, but it's better with one.

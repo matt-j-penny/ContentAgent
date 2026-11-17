@@ -5,6 +5,9 @@ description: Designs YouTube thumbnail concepts (and Shorts or Reels covers) for
 
 # Thumbnails
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 Turns an idea into thumbnail concepts that win at stamp size, and into images when a generator is available. Usually called by `packager` for a concept paired with a title; can be used on its own.
 
 Follow [`references/before-you-start.md`](references/before-you-start.md) first. Read [`references/thumbnails.md`](references/thumbnails.md) every time.

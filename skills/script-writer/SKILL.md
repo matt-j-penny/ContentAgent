@@ -5,6 +5,9 @@ description: Writes a YouTube long-form or short-form (Reels, TikTok, Shorts) sc
 
 # Script writer
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 Writes the script from the approved outline, in the user's voice, and saves it to the idea. The outline decides what's said; this skill decides how it sounds.
 
 Follow [`references/before-you-start.md`](references/before-you-start.md) first. The style profile matters most here: if it's missing, offer `style` first.

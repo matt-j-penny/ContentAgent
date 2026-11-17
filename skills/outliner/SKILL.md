@@ -5,6 +5,9 @@ description: Turns a content idea and its research into a strong video outline b
 
 # Outliner
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 The outline is where a video is won or lost. It decides the promise, the order and the payoff; the script just says it well. Get the user's approval on the outline before anyone writes a script.
 
 Follow [`references/before-you-start.md`](references/before-you-start.md) first. Read `list_idea_tips` (the `premise` and `script` sections).

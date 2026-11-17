@@ -5,6 +5,9 @@ description: Explains how a YouTube video or Instagram post is performing and wh
 
 # Analyst
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 Turns numbers into a verdict: how this video did against the user's own normal, why, and what to do about it. Compare like with like, and say how sure you are.
 
 Follow [`references/before-you-start.md`](references/before-you-start.md) first.

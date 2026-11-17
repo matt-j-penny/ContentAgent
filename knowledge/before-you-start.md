@@ -22,23 +22,18 @@ It only goes online when the last check was more than a week ago, so it's quick.
 
 If you can't run commands (a chat app with no terminal), skip this step.
 
-## 2. Check Content OS is connected
+## 2. Choose the data source
 
-Call `get_agent_profile`. If the Content OS tools aren't available, stop and tell the user to connect the Content OS MCP server (README, step 2), or to run `setup`.
+Content OS is the default. If its tools are available, call `get_agent_profile`. If the connection fails, explain the failure and offer to reconnect; do not silently treat a failed connection as a choice to work standalone. If Content OS is unavailable, ask whether the user wants to connect it (see the README). If they accept, help them connect and wait until it works. If they explicitly decline, use standalone mode for this conversation. Never ask them to paste an API key into chat. Respect a previous explicit choice in the same conversation; if they later connect Content OS, use it by default.
 
-## 3. Read the rules
+## 3. Load the right rules and context
 
-Read [`content-os.md`](content-os.md) before reading or writing anything in Content OS.
-
-## 4. Load the user
-
-From `get_agent_profile`:
-- **About You** missing or nearly empty: say so and offer to run `setup` first. Only `setup`, `style` and `video-breakdown` may carry on without it.
-- **Style profile** missing: writing skills (script-writer, titles, repurpose) offer to run `style` first, or carry on in a plain, neutral voice if the user prefers.
+- **Content OS:** Read [`content-os.md`](content-os.md) before any Content OS read or write. Load About You and style from `get_agent_profile`. If About You is missing, offer setup. If style is missing, writing skills offer style or a neutral voice.
+- **Standalone:** Read [`standalone.md`](standalone.md), then use local profiles or the information the user supplies. Do not call Content OS tools. Follow the standalone instructions in each skill in place of its Content OS-specific reads, writes and status changes. Ask only for context necessary to the job and continue without a complete profile when possible.
 
 ## Working files
 
-Research, outlines, drafts and analysis are working data. When you can write files, keep them in `contentagent-work/` in the user's current folder (it's safe to delete). Otherwise keep them in the conversation. Only what each skill says gets saved to Content OS.
+In Content OS mode, research, outlines, drafts and analysis are temporary working data in `contentagent-work/`, or in conversation if files aren't available. Persist finished outputs as the skill specifies. In standalone mode, use the durable `contentagent/` workspace described in `standalone.md`; do not label it safe to delete. Never overwrite user work without checking first.
 
 ## Optional connections
 

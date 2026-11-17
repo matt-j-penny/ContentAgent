@@ -5,6 +5,9 @@ description: Writes and scores YouTube titles, plus Instagram and Shorts on-scre
 
 # Titles
 
+**Data source:** Follow `references/before-you-start.md` to select Content OS or standalone mode. In standalone mode read `references/standalone.md`; replace Content OS-specific reads, writes and status changes below with its local equivalents. Continue the creative workflow using available local or user-supplied inputs. The Content OS instructions below apply when connected.
+
+
 Writes titles that are clear, wanted and honest, and scores them so the best one is obvious. Usually called by `packager` for a concept; can be used on its own.
 
 Follow [`references/before-you-start.md`](references/before-you-start.md) first. Read [`references/titles.md`](references/titles.md) every time; for short form also [`references/hooks.md`](references/hooks.md).

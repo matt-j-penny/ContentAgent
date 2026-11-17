@@ -1,6 +1,6 @@
 # ContentAgent
 
-Content-creation skills for YouTube and Instagram creators, powered by your Content OS data: a content director, researcher, outliner, script writer, style profile, packaging (titles and thumbnails), analyst and repurposing.
+Content-creation skills for YouTube and Instagram creators, using Content OS by default, with a standalone local mode: a content director, researcher, outliner, script writer, style profile, packaging (titles and thumbnails), analyst and repurposing.
 
 See [SPEC.md](SPEC.md) for how it fits together.
 
@@ -10,11 +10,15 @@ Works in any AI app on your own computer that supports skills and MCP servers, s
 
 The quickest way: copy the install prompt from the **Tools** page in Content OS and paste it into your AI app. It will follow the steps below for you.
 
-### 1. Get your Content OS API key
+### 1. Choose how to work
+
+Content OS is the default. To connect it, follow steps 2 and 3 below. If you prefer not to connect, install the skills in step 4, run setup, and decline the connection when asked. Standalone mode saves your profiles and work in a local `contentagent/` folder (or your chosen location). In apps without file access, work stays in the conversation.
+
+### 2. Get your Content OS API key
 
 In Content OS, open **AI & Connections** and create an API key. It starts with `cos_` and is only shown once.
 
-### 2. Connect Content OS
+### 3. Connect Content OS
 
 Add the Content OS MCP server, sending your key as a bearer token:
 
@@ -36,7 +40,7 @@ Claude Desktop and other apps that take a JSON `mcpServers` config:
 }
 ```
 
-### 3. Install the skills
+### 4. Install the skills
 
 Clone this repo to `~/.contentagent` and link the skills into your app. Installed this way, ContentAgent checks for updates once a week and pulls them itself.
 
@@ -53,13 +57,13 @@ That links every skill into `~/.claude/skills/` (Claude Code). For another app, 
 - **Claude Desktop:** zip each folder in `~/.contentagent/skills/` and upload it under Settings → Capabilities → Skills (`cd ~/.contentagent/skills && for d in */; do zip -qr "${d%/}.zip" "$d"; done`). Uploaded skills can't update themselves; re-upload after `git -C ~/.contentagent pull`.
 - **Apps without skills:** point them at `~/.contentagent/AGENTS.md`.
 
-### 4. Optional connections
+### 5. Optional connections
 
 - **vidIQ:** add the vidIQ MCP server and sign in with your own account. Improves research and analysis.
 - **Image generation:** connect any image-generation MCP or API you already use. Needed for thumbnails and carousel images.
 - **Video breakdowns:** install `ffmpeg` and `yt-dlp` (`brew install ffmpeg yt-dlp` on a Mac) and set `DEEPGRAM_API_KEY` to your own Deepgram key. Needs an app that can run commands, such as Claude Code, Codex or Cursor.
 
-### 5. Run setup
+### 6. Run setup
 
 Restart your app, then say **"run ContentAgent setup"**. It checks your connections, then asks about your business and audience and builds your style profile.
 
@@ -81,3 +85,5 @@ Restart your app, then say **"run ContentAgent setup"**. It checks your connecti
 | `video-breakdown` | Beat-by-beat breakdown of a short-form video |
 
 Every skill checks for a new ContentAgent version once a week before it starts.
+
+Standalone mode includes a snapshot of the shared title and short-form hook Vault. Thumbnail examples may be supplied by the user or researched; a shared thumbnail URL library is not included. Analytics require an available source or user-supplied data.
