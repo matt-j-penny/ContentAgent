@@ -94,6 +94,8 @@ Restart your app, then say **"run ContentAgent setup"**. It checks your connecti
 | `audio-design` | Mix supplied music and timed sound effects under video |
 | `b-roll` | Plan and insert supplied video cutaways over existing footage |
 | `short-clip` | Reframe a selected interval as a vertical clip |
+| `face-tracking` | Find face positions for a face-following crop |
+| `gaze-analysis` | Propose camera/screen layouts from corroborated cues |
 | `programmatic-short` | Assemble a vertical image-and-narration video |
 | `3d-video` | Render an editable 3D object turntable in Blender |
 | `motion-reference` | Analyse and recreate motion graphics with available tools |
@@ -112,3 +114,5 @@ Video-manifest and editing workflows use local files. Video analysis and rough c
 The CapCut integration creates new single-source drafts only. It requires macOS and CapCut; close CapCut before draft creation. Its draft format has not yet been verified against every CapCut version.
 
 Video creation dependencies vary by skill. Local clips, B-roll, audio mixes and image-based shorts need ffmpeg; 3D turntables need Blender. Motion-reference capture needs Pillow and ffmpeg. Screen recording, AI generation and third-party editors require compatible tools to be available in the host. The CapCut bridge currently creates new drafts only and has not been live-tested against every version.
+
+Face tracking uses OpenCV and the bundled YuNet model. Camera/screen analysis optionally uses MediaPipe and a separately supplied Face Landmarker model; head orientation alone cannot reliably establish eye gaze.

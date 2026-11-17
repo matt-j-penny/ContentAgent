@@ -41,7 +41,7 @@ Show them all and revise with the user.
 ## Step 4: Produce assets (when asked and possible)
 
 - **Carousel slides:** when `carousel-generator` is installed, use it for reusable templates, rendered slides and optional video slides; otherwise follow the producing routes in `carousel.md`: HTML rendered to images if there's a terminal and a browser tool, an image generator for backgrounds or illustrations, or the brief alone. Keep files in `contentagent-work/repurpose/<source>/`. Use the user's brand colours and fonts, and ask if they're unknown.
-- **Clips:** cutting video needs the source file and `ffmpeg`. With both, you can cut rough clips from the timestamps (`ffmpeg -ss <start> -to <end> -i source.mp4 -c copy clip.mp4`) for the user to finish in their editor. Otherwise the cut plan is the deliverable.
+- **Clips:** for a finished vertical clip, use `short-clip` when available; for face-following, use `face-tracking` first and inspect the result. Cutting video needs the source file and `ffmpeg`. With both, you can cut rough clips from the timestamps (`ffmpeg -ss <start> -to <end> -i source.mp4 -c copy clip.mp4`) for the user to finish in their editor. Otherwise the cut plan is the deliverable.
 
 Tell the user where every file is.
 

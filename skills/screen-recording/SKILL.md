@@ -13,6 +13,8 @@ Use an available host screen-recording tool or the user's installed recorder. Ch
 
 ## Edit
 
+For proposed camera-versus-screen layouts, use `gaze-analysis` when available. Its head-orientation measurement is only supporting evidence; it does not establish eye gaze.
+
 If the user has Matt's Recordly installed with its `matts-editor` CLI, discover the CLI with `command -v matts-editor`, or use the packaged launcher in the app if present. Inspect `--help` and `app capabilities --json` for the installed version before using commands. Its documented features include opening a recording, previewing, suggesting or applying zooms, captions, project save and export. The exact command schemas come from the running app, and the CLI needs an available editor instance. Do not imply ordinary Recordly installations include this fork's CLI.
 
 For another editor, use only the connected tools it actually exposes. Preserve the source and existing project; prefer a new project or copy when editing. Use the current user preferences and video-manifest profile for framing, zoom, captions and audio, then verify timing and output visually. If no compatible editor is available, return a timestamped edit plan with the missing capability explained.

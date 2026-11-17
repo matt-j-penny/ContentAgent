@@ -168,3 +168,5 @@ Additional production skills render source-preserving B-roll and short clips, mi
 `yt-video-research` extends topic research with video and transcript breakdowns and public-comment analysis, using vidIQ when available and other sources otherwise. Save research to the idea only when the user requests it, preserving existing research.
 
 `instagram-research` studies public competitor posts and can rank user-supplied post data by creator/format median with sample-size safeguards. Data collection requires an available source; the skill never changes a feed automatically.
+
+`face-tracking` uses the bundled YuNet model locally to provide time-stamped face positions for optional `short-clip` following. `gaze-analysis` produces reviewable camera/screen layout proposals from explicit transcript and cursor cues with calibrated head pose as an optional veto. It does not classify gaze from head orientation alone or edit an existing timeline.
