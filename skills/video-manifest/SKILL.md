@@ -58,6 +58,7 @@ Edit `D/manifest.json` directly:
 - Every value written gets a `_sources` entry (`measured:nle-1`, `observed:vid-2`, `asked:int-1`, `default`).
 - Layout regions are `% of frame` from the top-left: `x, y, w, h`, plus `shape`, `radius` (px at 1080p), `border`, `shadow`, `cutout`. Get these right, because the diagrams are drawn from them.
 - `structure.beatMap` uses `% of runtime`.
+- `repos` lists the GitHub repos and skills the creator builds with: `core` (default for every graphic) and `selective` (only when a beat needs it), each `{repo, url, what, use}`. Ask for them in the interview if the creator has any.
 - Conflicts and priority: see the end of `references/sources.md`.
 
 ## Step 4: Fill the gaps

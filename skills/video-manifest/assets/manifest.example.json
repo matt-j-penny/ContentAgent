@@ -244,6 +244,16 @@
       "never": ["spinning text", "more than 2 colours", "graphics during emotional lines"]
     },
 
+    "repos": {
+      "rule": "Core repos are the default toolkit for every graphic. Selective repos only when a beat needs them.",
+      "core": [
+        { "repo": "greensock/GSAP", "url": "https://github.com/greensock/GSAP", "what": "GSAP animation library.", "use": "Timeline-driven HTML graphics: staggers, text reveals." }
+      ],
+      "selective": [
+        { "repo": "mrdoob/three.js", "url": "https://github.com/mrdoob/three.js", "what": "JavaScript 3D library.", "use": "3D scenes a flat graphic can't sell." }
+      ]
+    },
+
     "color": {
       "look": "clean, slightly warm, punchy contrast",
       "luts": [],
