@@ -87,6 +87,7 @@ Restart your app, then say **"run ContentAgent setup"**. It checks your connecti
 | `carousel-generator` | Create reusable carousel designs and optional video slides |
 | `video-breakdown` | Beat-by-beat breakdown of a short-form video |
 | `video-manifest` | Capture an editing style from project files, video and interviews |
+| `storyboard` | Review storyboard for motion graphics, checked against your Video Manifest |
 | `youtube-editing-style` | Analyse the editing style of a long-form or short video |
 | `transcribe` | Produce word-timed transcripts for editing |
 | `rough-cut` | Plan and make a transcript-based rough cut |

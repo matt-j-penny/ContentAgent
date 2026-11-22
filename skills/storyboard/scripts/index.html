@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,"><title>Storyboard</title>
+<style>
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500&f[]=satoshi@400,500,700&display=swap');
+:root{color-scheme:light;--bg:#fafafa;--card:#fff;--ink:#1a1a2e;--soft:#64648c;--line:#e8e5f2;--p:#7c3aed;
+--yes:#0e9f6e;--revise:#92600a;--no:#dc3545;--no2:#fdecee;--head:'Cabinet Grotesk',system-ui,sans-serif}
+*{box-sizing:border-box;animation:none!important;transition:none!important}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Satoshi,system-ui,sans-serif}
+button,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid #a78bfa;outline-offset:2px}
+
+.bar{position:sticky;top:0;z-index:20;background:rgba(250,250,250,.97);border-bottom:1px solid var(--line);padding:10px 24px}
+.bar .row{max-width:1500px;margin:auto;display:flex;gap:6px 16px;align-items:center;flex-wrap:wrap}
+.bar h1{font:800 22px var(--head);margin:0 auto 0 0}
+.count{font-weight:700;white-space:nowrap}
+.count.y{color:var(--yes)}.count.r{color:var(--revise)}.count.n{color:var(--no)}
+#saved{color:var(--soft);min-width:78px}
+#saved.bad{color:var(--no);font-weight:700}
+#apply{border:0;border-radius:10px;background:var(--p);color:#fff;padding:8px 16px;font-weight:700;white-space:nowrap}
+#apply:disabled{background:#ede9fe;color:var(--soft);cursor:default}
+.result{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 16px;margin-bottom:14px;font-size:14px}
+.result p{margin:2px 0}
+.result b{color:var(--p)}
+.result .bad,.result .bad b,.problem{color:#92600a}
+.problem{background:#fdf3dc;border-radius:8px;padding:6px 10px;margin:8px 0 0;font-size:13px}
+.working{color:var(--p);font-weight:700;font-size:13px;margin:8px 0 0}
+.part.busy .stage{opacity:.5}
+.v:disabled,textarea:disabled{opacity:.5;cursor:default}
+.free-text{display:flex;align-items:center;font-family:var(--head);font-weight:800;line-height:1.1;white-space:pre-wrap;padding:8px 14px}
+.banner{background:var(--p);color:#fff;text-align:center;padding:8px}
+.banner button{margin-left:8px;border:0;border-radius:8px;background:#fff;color:var(--p);padding:4px 12px;font-weight:700}
+
+main{max-width:1500px;margin:auto;padding:22px 24px 60px}
+.how{margin:0 0 14px;color:var(--soft)}
+.how b{color:var(--ink)}
+.manifest{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px;margin-bottom:18px}
+.manifest summary{cursor:pointer;font-weight:700}
+.manifest .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:4px 28px;font-size:14px}
+.manifest h4{margin:14px 0 4px;color:var(--p);font-size:13px}
+.manifest ul{margin:0;padding-left:18px}
+#board{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,560px),1fr));gap:18px}
+.pid{font:800 20px/1 var(--head);color:var(--p);margin:0}
+.part{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;min-width:0}
+.opt{flex:1;display:flex;flex-direction:column;min-width:0}
+.stage{position:relative;aspect-ratio:16/9;flex:none;overflow:hidden;border-radius:10px;background:#fafafa;border:1px solid var(--line)}
+.revise .stage{border-color:var(--revise);box-shadow:0 0 0 2px var(--revise)}
+.yes .stage{border-color:var(--yes);box-shadow:0 0 0 2px var(--yes)}
+.no .stage{border-color:var(--no);box-shadow:0 0 0 2px var(--no)}
+.no .stage .canvas{opacity:.38}
+.canvas{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden}
+.canvas *{position:absolute;box-sizing:border-box;pointer-events:none}
+.canvas iframe{inset:0;width:100%;height:100%;border:0;color-scheme:light}
+.shot{overflow:hidden}
+.shot img{max-width:none}
+.gfx-h{left:67px;top:62px}
+.gfx-h *{position:static}
+.gfx-h .k{font:700 23px Inter,system-ui;letter-spacing:.18em;text-transform:uppercase;color:var(--p)}
+.gfx-h .t{font:800 80px/1.05 var(--head);margin-top:12px}
+.gfx-h em{font-style:normal;color:var(--p)}
+.label{font:800 38px var(--head);text-align:center;white-space:nowrap}
+.chips{display:flex;gap:22px;justify-content:center}
+.chips .chip{position:static;background:#fff;border-radius:999px;padding:16px 32px;font:800 44px var(--head);white-space:nowrap;box-shadow:0 12px 30px rgba(46,22,92,.22)}
+.slot{border:4px dashed #a78bfa;border-radius:24px;background:#f3f0ff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px}
+.slot>*{position:static}
+.slot b{font:800 52px/1 var(--head);color:var(--p);white-space:nowrap}
+.slot span{font:700 34px/1 var(--head);color:var(--soft)}
+.slot q{font:500 28px/1.2 Satoshi,system-ui;color:var(--soft)}
+.ring{border:5px solid var(--p);border-radius:18px}
+.said{font-size:15px;color:var(--soft);margin:10px 0}
+.said .cue{color:var(--ink);font-weight:700;text-decoration:underline 2px var(--p);text-underline-offset:3px}
+.answer{margin-top:auto}
+.choices{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.v{flex:auto;min-height:42px;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:6px 10px;font-weight:700;white-space:nowrap}
+.v[data-v=yes]{color:var(--yes)}.v[data-v=revise]{color:var(--revise)}.v[data-v=no]{color:var(--no)}
+.v[aria-pressed=true]{color:#fff}
+.v[data-v=yes][aria-pressed=true]{background:var(--yes);border-color:var(--yes)}
+.v[data-v=revise][aria-pressed=true]{background:var(--revise);border-color:var(--revise)}
+.v[data-v=no][aria-pressed=true]{background:var(--no);border-color:var(--no)}
+textarea{display:block;width:100%;min-height:58px;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--bg)}
+.errors{background:var(--no2);color:var(--no);border-radius:12px;padding:10px 14px;margin-bottom:14px}
+@media(max-width:640px){.bar,main{padding-left:12px;padding-right:12px}.bar h1{font-size:18px;width:100%}}
+</style></head>
+<body>
+<header class="bar"><div class="row"><h1 id="title">Storyboard</h1><span class="count" id="cLeft"></span><span class="count y" id="cYes"></span><span class="count r" id="cRevise"></span><span class="count n" id="cNo"></span><span id="saved" role="status"></span><button id="apply" disabled>Apply</button></div></header>
+<div class="banner" id="banner" hidden>The storyboard has been updated.<button id="reload">Show it</button></div>
+<main>
+  <p class="how"><b>Accept</b> keeps a frame as it is. <b>Revise with comment</b> changes what you write. <b>New idea</b> redoes it from scratch, and a comment there is optional. Then press <b>Apply</b>.</p>
+  <div class="result" id="result" role="status" hidden></div>
+  <div id="info"></div>
+  <div id="board"></div>
+</main>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const el = (tag, props = {}, ...kids) => { const e = document.createElement(tag); Object.assign(e, props); e.append(...kids.filter(k => k !== null && k !== undefined && k !== false)); return e };
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const box = (e, x, y, w, h) => { Object.assign(e.style, {left: x + 'px', top: y + 'px', width: w + 'px', height: h + 'px'}); return e };
+let B, R, VERSION, JOB = {state: 'idle'}, starting = false, failed = new Map(), pending = new Map(), sending = Promise.resolve();
+const cards = new Map(), shown = [];
+
+/* saving: one field at a time, in order; anything that fails stays queued and retries */
+function status() {
+  const s = $('saved');
+  s.className = failed.size ? 'bad' : '';
+  s.textContent = failed.size ? 'Not saved, retrying' : pending.size ? 'Saving…' : 'Saved';
+}
+function queue(key, body, delay = 0) {
+  clearTimeout(pending.get(key)?.timer); failed.delete(key);
+  pending.set(key, {body, timer: setTimeout(() => send(key), delay)}); status();
+}
+function send(key) {
+  const job = pending.get(key) || failed.get(key); if (!job) return;
+  clearTimeout(job.timer);
+  sending = sending.then(async () => {
+    if ((pending.get(key) || failed.get(key)) !== job) return;
+    try {
+      const r = await fetch('/api/review', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(job.body), keepalive: true});
+      if (!r.ok) throw Error(r.status);
+      if (pending.get(key) === job) pending.delete(key);
+      failed.delete(key);
+    } catch {
+      if (pending.get(key) === job) { pending.delete(key); failed.set(key, job) }
+    }
+    status();
+  });
+}
+setInterval(() => { for (const k of failed.keys()) send(k) }, 3000);
+addEventListener('beforeunload', e => { for (const k of pending.keys()) send(k); if (failed.size || pending.size) e.preventDefault() });
+
+/* each option is one still on a 1920x1080 canvas, with everything that will appear already showing */
+function shot(parent, rect, track, time, crop = [0, 0, 1, 1], contain = false, radius = 0) {
+  let [x, y, w, h] = rect;
+  const aspect = crop[2] * 16 / (crop[3] * 9);
+  if (contain) {
+    const fw = Math.min(w, h * aspect), fh = fw / aspect;
+    x += (w - fw) / 2; y += (h - fh) / 2; w = fw; h = fh;
+  } else {
+    let [a, b, c, d] = crop; const target = w / h;
+    if (aspect > target) { const n = c * target / aspect; a += (c - n) / 2; c = n }
+    else { const n = d * aspect / target; b += (d - n) / 2; d = n }
+    crop = [a, b, c, d];
+  }
+  const e = box(el('div', {className: 'shot'}), x, y, w, h); e.style.borderRadius = radius + 'px';
+  const W = w / crop[2], H = h / crop[3], frame = Math.round(clamp(time, 0, B.total - .1) * B.fps);
+  e.append(box(el('img', {src: `/still/${track}/${frame}.jpg`, alt: ''}), -crop[0] * W, -crop[1] * H, W, H));
+  parent.append(e);
+  return e;
+}
+
+function drawStill(canvas, part, o) {
+  const v = o.visual, lay = o.layout, at = v.still ?? (v.kind === 'zoom' ? Math.min(part.end - .05, v.t + 1.2) : part.end - .05);
+  const region = role => {
+    const r = B.layouts[lay].regions.find(x => x.role === role);
+    return r && {rect: [r.x * 19.2, r.y * 10.8, r.w * 19.2, r.h * 10.8], radius: r.radius || 0};
+  };
+  if (lay === 'full') {
+    // same maths as revise.head: x is the point of the webcam picture to centre, top is the point on the top edge
+    const p = v.punch || {}, k = p.scale || 1.08, w = 1920 * k, h = 1080 * k;
+    shot(canvas, [clamp(960 - (p.x ?? .512) * w, 1920 - w, 0), clamp(-(p.top || 0) * h, 1080 - h, 0), w, h], 'cam', at);
+  }
+  else if (lay !== 'screen-pip') canvas.style.background = `radial-gradient(circle at 78% 14%, ${B.colors.primary}1c, transparent 45%), ${B.colors.background}`;
+
+  if (lay === 'screen-pip') {
+    const s = shot(canvas, [0, 0, 1920, 1080], 'screen', at);
+    if (v.kind === 'zoom' && v.zoom) {
+      s.style.transformOrigin = '0 0';
+      s.style.transform = `translate(${v.zoom.x * 1920}px,${v.zoom.y * 1080}px) scale(${v.zoom.s})`;
+      const ring = box(el('div', {className: 'ring'}), v.box[0] * 1920, v.box[1] * 1080, v.box[2] * 1920, v.box[3] * 1080);
+      ring.style.borderWidth = 5 / v.zoom.s + 'px';
+      s.append(ring);
+    }
+  }
+  if (v.kind === 'template') drawTemplate(canvas, o, at, region);
+  if (v.kind === 'clips') drawClips(canvas, o, at);
+  if (v.kind === 'free') drawFree(canvas, v, at);
+  if (lay !== 'full' && v.speaker !== false) {
+    const s = v.speaker, r = s ? {rect: [s.x, s.y, s.w, s.h], radius: s.radius ?? 43} : region('speaker'); if (!r) return;
+    let [x, y, w, h] = r.rect;
+    const crop = s?.crop || (Math.abs(w / h - 1) < .12 ? [.329, 0, .422, .75] : w / h > 1.12 ? [0, 0, 1, 1] : [.353, 0, .334, 1]);
+    if (!s && v.kind === 'zoom' && v.zoom?.pip) { x = v.zoom.pip[0] * 1920; y = v.zoom.pip[1] * 1080 }
+    const cam = shot(canvas, [x, y, w, h], 'cam', at, crop, false, r.radius);
+    cam.style.boxShadow = '0 14px 40px rgba(46,22,92,.22)';
+    if (!s?.behind) cam.style.zIndex = 5;
+    else canvas.prepend(cam);
+  }
+}
+
+function drawTemplate(canvas, o, at, region) {
+  const v = o.visual, overlay = o.layout === 'full';
+  const f = el('iframe', {title: 'Storyboard frame', tabIndex: -1});
+  f.addEventListener('load', () => {
+    const d = f.contentDocument; if (!d || !d.body) return;
+    d.documentElement.style.colorScheme = 'light';
+    d.head.append(el('style', {textContent: '*,*::before,*::after{animation:none!important;transition:none!important}' +
+      '.in,.play .in{opacity:1!important}.footage,.slot,.cam{display:none!important}' +
+      (overlay ? 'html,body{background:transparent!important}body::before{display:none!important}' : '') +
+      (v.media?.length ? '.demo{color:transparent!important}' : '') + (v.css || '')}));
+    // step templates: swap the elements out so their timers can't move the highlight, and rest on the last step
+    // word-box captions: the template boxes its demo words before the real text arrives, so box the real words here
+    for (const c of d.querySelectorAll('.cap')) c.replaceChildren(...c.textContent.trim().split(/\s+/).flatMap(w => [Object.assign(d.createElement('span'), {className: 'on', textContent: w}), ' ']));
+    const steps = [...d.querySelectorAll('.s')].map(e => { const n = e.cloneNode(true); e.replaceWith(n); return n });
+    steps.forEach((e, i) => e.classList.toggle('on', i === steps.length - 1));
+  });
+  f.src = v.src + '?' + new URLSearchParams({...v.vars, once: 1});
+  canvas.append(f);
+  const slots = v.id === 'compare-2up' ? [[58, 579, 882, 435], [979, 579, 882, 435]] : [region('content')?.rect];
+  (v.media || []).forEach((m, i) => { if (slots[i]) shot(canvas, slots[i], m.track || 'screen', m.at ?? m.still ?? at, m.crop, true, 18) });
+}
+
+function drawClips(canvas, o, at) {
+  const v = o.visual, third = o.layout === 'right-third', right = third ? 1225 : 1853;
+  let top = 62;
+  if (v.title) {
+    const h = el('div', {className: 'gfx-h'}, v.kicker ? el('div', {className: 'k', textContent: v.kicker}) : null,
+      el('div', {className: 't'}, v.title + ' ', el('em', {textContent: v.highlight || ''})));
+    h.style.maxWidth = right - 67 + 'px'; canvas.append(h);
+    top = third && (v.title + (v.highlight || '')).length > 24 ? 350 : 258;
+  }
+  // rows share one width, so a tall row sits flush above a wide one
+  const gap = 30, left = 67, bottom = v.chips?.length ? 900 : 1018;
+  if (!v.title && v.rows) top = 44;
+  const aspect = m => {
+    if (m.placeholder) { const [a, b] = m.placeholder.split(':').map(Number); return a / b }
+    return m.crop ? m.crop[2] * 16 / (m.crop[3] * 9) : 16 / 9;
+  };
+  let taken = 0;
+  const rows = (v.rows || [v.items.length]).map(n => {
+    const items = v.items.slice(taken, taken += n);
+    return {items, sum: items.reduce((k, m) => k + aspect(m), 0), gaps: gap * (n - 1), under: items.some(m => m.label) ? 72 : 0};
+  });
+  const floor = !v.title && v.rows ? 1036 : bottom;
+  const perWidth = rows.reduce((k, r) => k + 1 / r.sum, 0);
+  const fixed = rows.reduce((k, r) => k + r.under - r.gaps / r.sum, 0) + gap * (rows.length - 1);
+  const width = Math.min(right - left, (floor - top - fixed) / perWidth);
+  let y = top + (floor - top - (width * perWidth + fixed)) / 2;
+  for (const r of rows) {
+    const h = (width - r.gaps) / r.sum;
+    let x = left + (right - left - width) / 2;
+    for (const m of r.items) {
+      const w = h * aspect(m);
+      if (m.placeholder) {
+        canvas.append(box(el('div', {className: 'slot'}, el('b', {textContent: m.asset}), el('span', {textContent: m.placeholder}),
+          !m.label && m.cue ? el('q', {textContent: m.cue}) : null), x, y, w, h));
+      } else shot(canvas, [x, y, w, h], m.track || 'screen', m.at ?? m.still ?? at, m.crop, false, 24).style.boxShadow = '0 16px 44px rgba(46,22,92,.2)';
+      if (m.label) {
+        const l = box(el('div', {className: 'label', textContent: m.label}), x - gap / 2, y + h + 14, w + gap, 60);
+        canvas.append(l);
+        const fit = () => { l.style.fontSize = '38px'; if (l.scrollWidth > w + gap) l.style.fontSize = 38 * (w + gap) / l.scrollWidth + 'px' };
+        requestAnimationFrame(fit); document.fonts.ready.then(fit);
+      }
+      x += w + gap;
+    }
+    y += h + r.under + gap;
+  }
+  if (v.chips?.length) canvas.append(box(el('div', {className: 'chips'}, ...v.chips.map(c => el('div', {className: 'chip', textContent: c.text}))), 67, 932, right - 67, 100));
+}
+
+// Claude's own markup: no scripts, its own origin, and nothing can load but the brand fonts
+function sealed(m) {
+  const f = el('iframe', {title: 'Storyboard graphic', tabIndex: -1});
+  f.setAttribute('sandbox', '');
+  f.srcdoc = `<!doctype html><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://api.fontshare.com; font-src https://cdn.fontshare.com data:">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500&f[]=satoshi@400,500,700&display=swap">
+<style>:root{color-scheme:light}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent;color:#1a1a2e;font-family:'Cabinet Grotesk',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;animation:none!important;transition:none!important}</style><style>${m.css || ''}</style>${m.html}`;
+  return f;
+}
+
+function drawFree(canvas, v, at) {
+  for (const m of v.items) {
+    const {shape, x, y, w, h} = m;
+    let e;
+    const finish = node => {
+      if (m.rotate) node.style.transform = `rotate(${m.rotate}deg)`;
+      if (m.opacity !== undefined) node.style.opacity = m.opacity;
+    };
+    if (shape === 'footage') { finish(shot(canvas, [x, y, w, h], m.track || 'screen', m.at ?? m.still ?? at, m.crop, false, m.radius ?? 24)); continue }
+    if (shape === 'html') { const f = box(sealed(m), x, y, w, h); finish(f); canvas.append(f); continue }
+    if (shape === 'placeholder') e = el('div', {className: 'slot'}, el('b', {textContent: m.asset}), el('span', {textContent: m.placeholder}), m.label ? el('q', {textContent: m.label}) : null);
+    else if (shape === 'text') {
+      e = el('div', {className: 'free-text'}, el('span', {textContent: m.text}));
+      e.firstChild.style.position = 'static';
+      const align = m.align || 'center';
+      Object.assign(e.style, {fontSize: m.size + 'px', color: m.color || B.colors.text, textAlign: align, justifyContent: {left: 'flex-start', right: 'flex-end', center: 'center'}[align]});
+      // Claude sizes text blind, so shrink it until it fits the box it was given
+      const fit = () => { let n = m.size; e.style.fontSize = n + 'px'; while (n > 24 && (e.scrollWidth > e.clientWidth || e.scrollHeight > e.clientHeight)) e.style.fontSize = (n -= 2) + 'px' };
+      requestAnimationFrame(fit); document.fonts.ready.then(fit);
+    } else e = el('div');
+    box(e, x, y, w, h);
+    if (m.background) e.style.background = m.background;
+    if (m.radius !== undefined) e.style.borderRadius = m.radius + 'px';
+    finish(e);
+    canvas.append(e);
+  }
+}
+
+/* apply button */
+// the same rule as revise.jobs, for the button's count
+function toApply() {
+  return shown.filter(o => {
+    const r = R.options[o.id] || {};
+    return r.verdict === 'no' || (r.verdict !== 'yes' && r.note?.trim());
+  });
+}
+function paintJob() {
+  const running = starting || JOB.state === 'running', n = toApply().length, b = $('apply');
+  b.disabled = running || !n;
+  const secs = JOB.started ? Math.max(0, Math.round(Date.now() / 1000 - JOB.started)) : 0;
+  b.textContent = running ? (secs && JOB.state === 'running' ? `Applying… ${secs}s` : 'Applying…') : n ? `Apply ${n} change${n > 1 ? 's' : ''}` : 'Nothing to apply';
+  for (const [id, c] of cards) {
+    const part = c.part, busy = JOB.state === 'running' && JOB.parts?.includes(part.id), locked = starting || busy;
+    c.root.parentElement?.classList.toggle('busy', busy);
+    c.note.disabled = locked; c.verdicts.forEach(v => v.disabled = locked);
+    c.working.hidden = !busy;
+    const last = JOB.state === 'done' ? JOB.results?.[part.id] : null;
+    const stuck = last && last.option === id && ['needs_chat', 'not_done'].includes(last.status) && last.note === (R.options[id]?.note || '').trim();
+    c.problem.hidden = !stuck;
+    if (stuck) c.problem.textContent = last.status === 'needs_chat' ? `${last.summary} The Claude chat can do this one.` : last.summary;
+  }
+  const lines = [];
+  if (JOB.state === 'failed') lines.push(el('p', {className: 'bad', textContent: JOB.error}));
+  if (JOB.state === 'done') for (const [id, r] of Object.entries(JOB.results || {})) lines.push(el('p', {className: ['changed', 'removed'].includes(r.status) ? '' : 'bad'}, el('b', {textContent: id + ' '}), r.summary));
+  if (running) lines.push(el('p', {textContent: 'Claude is working on your changes, usually in one to four minutes. You can leave this page open and carry on.'}));
+  $('result').replaceChildren(...lines); $('result').hidden = !lines.length;
+}
+$('apply').onclick = async () => {
+  starting = true; paintJob();
+  try {
+    for (const k of [...pending.keys(), ...failed.keys()]) send(k);
+    await sending;
+    if (pending.size || failed.size) throw Error("Your answers haven't saved yet, so nothing was sent. Try again in a moment.");
+    const r = await fetch('/api/apply', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: '{}'});
+    if (!r.ok && r.status !== 409) throw Error("The storyboard server didn't accept that. Try again.");
+    JOB = {state: 'running', parts: toApply().map(o => cards.get(o.id).part.id), started: Date.now() / 1000};
+  } catch (e) {
+    JOB = {state: 'failed', error: e instanceof TypeError ? "The storyboard server isn't running. Open the storyboard app again." : e.message};
+  }
+  starting = false; paintJob();
+};
+async function poll() {
+  try {
+    const d = await (await fetch('/api/version')).json();
+    if (starting) return;
+    const justDone = JOB.state === 'running' && d.job.state !== 'running';
+    JOB = d.job; paintJob();
+    const typing = document.activeElement?.tagName === 'TEXTAREA' && !document.activeElement.disabled;
+    if (justDone && d.version !== VERSION && !typing && !pending.size && !failed.size) return location.reload();
+    $('banner').hidden = d.version === VERSION;
+  } catch {}
+}
+
+/* page */
+const fitter = new ResizeObserver(es => es.forEach(e => e.target.firstElementChild.style.transform = `scale(${e.contentRect.width / 1920})`));
+
+function optionCard(part, o) {
+  const v = o.visual, canvas = el('div', {className: 'canvas'}), stage = el('div', {className: 'stage'}, canvas);
+  const cues = [...(v.times || []), v.t, v.title ? v.titleT : undefined, ...(v.items || []).map(x => x.t), ...(v.chips || []).map(x => x.t)];
+  const said = el('p', {className: 'said'});
+  for (const w of part.words) said.append(el('span', {className: cues.some(t => t !== undefined && t > part.start && Math.abs(t - w.start) < .01) ? 'cue' : '', textContent: w.text}), ' ');
+  const line = said.textContent.trim();
+  const set = next => {
+    (R.options[o.id] ||= {}).verdict = next; paint();
+    queue('v:' + o.id, {option: o.id, verdict: next});
+  };
+  const verdicts = [['yes', '✓ Accept'], ['revise', '✎ Revise with comment'], ['no', '↻ New idea']].map(([x, text]) => {
+    const b = el('button', {className: 'v', textContent: text});
+    b.dataset.v = x; b.setAttribute('aria-label', `${text.slice(2)}: ${line}`);
+    b.onclick = () => {
+      const next = R.options[o.id]?.verdict === x ? null : x;
+      set(next);
+      if (next === 'revise') note.focus();
+    };
+    return b;
+  });
+  const note = el('textarea', {value: R.options[o.id]?.note || '', maxLength: 5000});
+  note.setAttribute('aria-label', `Comment: ${line}`);
+  note.oninput = () => {
+    const r = (R.options[o.id] ||= {});
+    r.note = note.value;
+    // writing a comment means revise, unless it is steering a new idea
+    if (r.verdict !== 'no' && r.verdict !== 'revise' && note.value.trim()) set('revise');
+    paintJob(); queue('n:' + o.id, {option: o.id, note: note.value}, 400);
+  };
+  note.onblur = () => send('n:' + o.id);
+  const working = el('p', {className: 'working', textContent: 'Claude is changing this…', hidden: true});
+  const problem = el('p', {className: 'problem', hidden: true});
+  const root = el('div', {className: 'opt'}, stage, said, el('div', {className: 'answer'}, el('div', {className: 'choices'}, ...verdicts), note), working, problem);
+  drawStill(canvas, part, o);
+  fitter.observe(stage);
+  cards.set(o.id, {root, verdicts, note, working, problem, part});
+  return root;
+}
+
+function partCard(part) {
+  const replaced = new Set(part.options.map(o => o.replaces)), o = part.options.filter(x => !replaced.has(x.id)).at(-1);
+  shown.push(o);
+  return el('article', {className: 'part', id: part.id}, el('p', {className: 'pid', textContent: part.id}), optionCard(part, o));
+}
+
+const HINT = {yes: 'Accepted as it is', revise: 'What should change?', no: 'Optional: a direction for the new idea'};
+function paint() {
+  const count = {yes: 0, revise: 0, no: 0, left: 0};
+  for (const [id, c] of cards) {
+    const r = R.options[id] || {}, v = r.verdict || (r.note?.trim() ? 'revise' : null);
+    count[v || 'left']++;
+    for (const x of Object.keys(HINT)) c.root.classList.toggle(x, v === x);
+    c.verdicts.forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v));
+    c.note.placeholder = HINT[v] || 'What would you change?';
+  }
+  paintJob();
+  $('cLeft').textContent = `${count.left} to review`; $('cYes').textContent = `✓ ${count.yes}`;
+  $('cRevise').textContent = `✎ ${count.revise}`; $('cNo').textContent = `↻ ${count.no}`;
+}
+
+function info() {
+  const list = xs => el('ul', {}, ...xs.map(x => el('li', {textContent: x})));
+  if (B.errors.length) return el('div', {className: 'errors'}, list(B.errors));
+  const m = B.manifestInfo, s = B.summary;
+  return el('details', {className: 'manifest'},
+    el('summary', {textContent: `Checked against ${m.name}'s Video Manifest v${m.version}, ${m.label}`}),
+    el('div', {className: 'cols'},
+      el('div', {}, el('h4', {textContent: 'Rules used'}), list([...m.rules, `Elements land on ${m.sync}`, m.placement])),
+      el('div', {}, el('h4', {textContent: 'This storyboard against the manifest'}),
+        list([`${s.perMin} graphics a minute (your target here is ${s.wantPerMin})`, `${s.coverage}% full-screen graphics (you use ${s.wantCoverage.join(' to ')}%)`, ...(B.flags || [])]))));
+}
+
+async function start() {
+  const r = await fetch('/api/board'); if (!r.ok) throw Error(`The board did not load (${r.status}). Run storyboard.py check.`);
+  const d = await r.json(); B = d.board; R = d.review; VERSION = d.version; JOB = d.job; R.options ||= {};
+  $('info').replaceChildren(info());
+  if (B.errors.length) return;
+  document.title = `${B.video} storyboard`; $('title').textContent = `${B.video} storyboard`;
+  $('board').append(...B.parts.map(partCard));
+  paint(); status();
+  setInterval(poll, 2000);
+}
+$('reload').onclick = () => location.reload();
+start().catch(e => { $('info').replaceChildren(el('div', {className: 'errors', textContent: e.message})) });
+</script>
+</body></html>
